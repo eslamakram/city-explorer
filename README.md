@@ -6,11 +6,21 @@
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
 
+* feature 1:( Locations) As a user of City Explorer, I want to enter the name of a location so that I can see the exact latitude and longitude of that location.
+
+* feature 2:(Map) As a user, I want to see a map of the city so that I can see the layout of the area I want to explore.
+* feature 2:( Errors) As a user, I want clear messages if something goes wrong so I know if I need to make any changes or try again in a different manner.
+
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
+deploy netlfiy url : https://fervent-lichterman-6ed790.netlify.app/
+
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+![arch](./arch.pngarch.png)
+
+i install axios library and download thunder
 
 ## Change Log
 
@@ -27,6 +37,6 @@ Estimate of time needed to complete: 3 hours
 
 Start time: 2:20 pm
 
-Finish time: _____
+Finish time: 11 pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 7 hours
