@@ -5,9 +5,10 @@ class LocationIQ extends Component {
     render() {
         return (
             <>
-                <Card border="warning" style={{ width: '18rem' }}>
+            {/* <h1>hello</h1> */}
+                 <Card border="warning" style={{ width: '18rem' }}>
                     <Card.Header>Welcome to Exploer City! </Card.Header>
-                    <Card.Img variant="top" src={this.props.mapSrc} />
+                    <Card.Img  style={{ width: '18rem' }} variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY} &center=${this.props.latitude},${this.props.longitude}&zoom=1-18`}/>
 
                     <Card.Body>
                         <Card.Title>{this.props.display_name}</Card.Title>
@@ -22,8 +23,7 @@ class LocationIQ extends Component {
 
                         </Card.Text>
                     </Card.Body>
-                </Card>
-                <br />
+                </Card> 
             </>
         )
     }

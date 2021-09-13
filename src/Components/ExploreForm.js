@@ -10,7 +10,7 @@ class ExploreForm extends Component {
                     <Form onSubmit={this.props.handleSubmit}>
                         <Col md>
                             <Form.Label>City Name</Form.Label>
-                            <Form.Control type="text" onChange={this.props.handleLocation} />
+                            <input type="text" onChange={this.props.handleLocation} />
                         </Col>
                         <Col md>
                             <Button variant="warning" size="lg" type="submit">Exploer</Button>
