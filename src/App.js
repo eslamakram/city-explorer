@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import ExploreForm from './Components/ExploreForm';
 import LocationIQ from './Components/LocationIQ';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
  class App extends Component {
   

@@ -7,7 +7,7 @@ class ExploreForm extends Component {
             <>
 
                 <Row className="g-2">
-                    <Form onSubmit={this.props.handleSubmit}>
+                    <Form onSubmit={this.props.handleSubmit} style={{ width: '20rem', margin:'30px' , color:'gray',  border: '4px'} }>
                         <Col md>
                             <Form.Label>City Name</Form.Label>
                             <input type="text" onChange={this.props.handleLocation} />
