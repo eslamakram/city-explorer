@@ -5,6 +5,7 @@ import LocationIQ from './Components/LocationIQ';
 import Weather from './Components/Weather';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Movies from './Components/Movies';
 
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
       longitude: " ",
       mapSrc: '',
       weatherData: [],
+      moviesData: []
     };
   }
 
@@ -51,19 +53,27 @@ class App extends Component {
         type: responseData.type,
         latitude: responseData.lat,
         longitude: responseData.lon,
-        mapSrc: responseData.imgSrc
-      })
-    }).then(() => {
-      axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/weather?lat=${this.state.latitude}&lon=${this.state.longitude}`).then(res => {
-        console.log(res.data)
-        this.setState({
-          weatherData: res.data
-        });
-      });
+        mapSrc: responseData.imgSrc,
+        
+      }).then(()=>{axios.get(`http://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.REACT_APP_WEATHER_API_KEY}&lat=${this.state.latitude}&lon=${this.state.longitude}`).then
+    res => {this.setState({
+            weatherData: res.data
+          });}}).then(()=>{axios.get(`https://api.themoviedb.org/3/movie/550?key=${process.env.REACT_APP_MOVIES_API_KEY}
+          `).then(res =>{
+            this.setState({
+              moviesData: res.data
+            })
+          })})
+    
+      
+
     });
 
-
-
+//axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/movies?`).then( res =>{
+//   this.setState({
+//     moviesData: res.data
+//   });
+// });
 
   }
   render() {
@@ -88,11 +98,14 @@ class App extends Component {
            return  <Weather  
                        date={day.date}
                        description={day.description}
-              // display_name={this.state.display_name.split(',')}
             />
 
           })
         } 
+
+        {
+         <Movies moviesData={this.state.moviesData} />
+        }
 
       </>
     )
