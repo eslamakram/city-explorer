@@ -14,7 +14,7 @@
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
-deploy netlfiy url : https://fervent-lichterman-6ed790.netlify.app/
+deploy netlfiy url : <https://fervent-lichterman-6ed790.netlify.app/>
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
@@ -30,6 +30,7 @@ i install axios library and download thunder
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+### lab 06
 
 Name of feature: one feature app has functional server with a GET route for the location resource.
 
@@ -40,3 +41,15 @@ Start time: 2:20 pm
 Finish time: 11 pm
 
 Actual time needed to complete: 7 hours
+
+### lab 08
+
+Name of feature: two feature app have functional server with a GET route for the weather resource and for movies resourse
+
+Estimate of time needed to complete: 4 hours
+
+Start time: 2:00 pm
+
+Finish time: 10 pm
+
+Actual time needed to complete: 8 hours
