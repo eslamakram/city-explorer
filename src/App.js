@@ -55,31 +55,21 @@ class App extends Component {
         longitude: responseData.lon,
         mapSrc: responseData.imgSrc,
         
-      }).then(()=>{axios.get(`http://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.REACT_APP_WEATHER_API_KEY}&lat=${this.state.latitude}&lon=${this.state.longitude}`).then
+      }).then(()=>{axios.get(`${process.env.BACKEND_URL}/weather?lat=${this.state.latitude}&lon=${this.state.longitude}` || `${process.env.BACKEND_URL}/localweather?lat=${this.state.latitude}&lon=${this.state.longitude}` ).then
     res => {this.setState({
             weatherData: res.data
-          });}}).then(()=>{axios.get(`https://api.themoviedb.org/3/movie/550?key=${process.env.REACT_APP_MOVIES_API_KEY}
-          `).then(res =>{
+          });}}).then(()=>{axios.get(`${process.env.BACKEND_URL}/movies?`).then(res =>{
             this.setState({
               moviesData: res.data
             })
           })})
-    
-      
+        })
 
-    });
-
-//axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/movies?`).then( res =>{
-//   this.setState({
-//     moviesData: res.data
-//   });
-// });
-
+   
   }
   render() {
     return (
       <>
-        {/* <NavBAR /> */}
         <ExploreForm
           handleLocation={this.handleLocation}
           handleSubmit={this.handleSubmit}
