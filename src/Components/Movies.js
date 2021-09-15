@@ -26,7 +26,7 @@ class Movies extends Component {
                             <tbody>
                                 { this.props.moviesData.map(movie => {
                                 <tr>                                                        
-                                         <td><img src='{movie.image_url}'/></td>
+                                         <td><img src={movie.image_url}/></td>
                                          <td>{movie.title}</td>
                                          <td>{movie.overview}</td>
                                          <td>{movie.popularity}</td>
