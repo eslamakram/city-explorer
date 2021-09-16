@@ -54,8 +54,8 @@ class App extends Component {
         latitude: responseData.lat,
         longitude: responseData.lon,
         mapSrc: responseData.imgSrc,
-        
-      }).then(()=>{axios.get(`${process.env.BACKEND_URL}/weather?lat=${this.state.latitude}&lon=${this.state.longitude}` || `${process.env.BACKEND_URL}/localweather?lat=${this.state.latitude}&lon=${this.state.longitude}` ).then
+        //|| `${process.env.BACKEND_URL}/localweather?lat=${this.state.latitude}&lon=${this.state.longitude}`
+      }).then(()=>{axios.get(`${process.env.BACKEND_URL}/weather?lat=${this.state.latitude}&lon=${this.state.longitude}`).then
     res => {this.setState({
             weatherData: res.data
           });}}).then(()=>{axios.get(`${process.env.BACKEND_URL}/movies?`).then(res =>{
