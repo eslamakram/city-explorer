@@ -6,6 +6,7 @@ import Weather from './Components/Weather';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Movies from './Components/Movies';
+import { Alert } from 'react-bootstrap';
 
 
 class App extends Component {
@@ -14,20 +15,23 @@ class App extends Component {
     super(props);
     this.state = {
       showData: false,
+      showWeather: false,
+      showMovie: false,
       display_name: " ",
       type: " ",
       latitude: " ",
       longitude: " ",
       mapSrc: '',
       weatherData: [],
-      moviesData: []
-    };
+      moviesData: [],
+      error: " "
+    }
   }
 
-  handleLocation = async (event) => {
+  handleLocation = (event) => {
     let selectedCity = event.target.value;
     console.log(selectedCity, 'hi');
-    await this.setState({
+     this.setState({
       display_name: selectedCity
     })
   }
@@ -55,15 +59,30 @@ class App extends Component {
         longitude: responseData.lon,
         mapSrc: responseData.imgSrc,
         //|| `${process.env.BACKEND_URL}/localweather?lat=${this.state.latitude}&lon=${this.state.longitude}`
-      }).then(()=>{axios.get(`${process.env.BACKEND_URL}/weather?lat=${this.state.latitude}&lon=${this.state.longitude}`).then
-    res => {this.setState({
-            weatherData: res.data
-          });}}).then(()=>{axios.get(`${process.env.BACKEND_URL}/movies?`).then(res =>{
+      })
+    }).then(()=>{
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather?lat=${this.state.latitude}&lon=${this.state.longitude}`)
+      .then( res => {
+        this.setState({
+            weatherData: res.data,
+            showWeather:true
+          });
+        });
+      }).then(()=>{
+          axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies?cityName=${this.state.display_name}`)
+          .then(res =>{
             this.setState({
-              moviesData: res.data
+              moviesData: res.data,
+              showMovie: true
             })
-          })})
-        })
+          })
+        }).catch((e)=>{
+          console.log(e.response);
+          this.setState({
+            error:e.response.data.error
+          });
+        });
+        
 
    
   }
@@ -76,25 +95,34 @@ class App extends Component {
         />
         {this.state.showData &&
           <LocationIQ
-            display_name={this.state.display_name}
-            type={this.state.type}
-            latitude={this.state.latitude}
-            longitude={this.state.longitude}
-          />
+                       display_name={this.state.display_name}
+                       type={this.state.type}
+                       latitude={this.state.latitude}
+                       longitude={this.state.longitude} />
         }
 
-        {
-          this.state.weatherData.map( day=> {
+        {this.state.error && <Alert> Kindly Check {this.state.error}</Alert>}
+
+        { this.state.showWeather &&  this.state.weatherData.map( day=> {
            return  <Weather  
-                       date={day.date}
-                       description={day.description}
+                             date={day.date}
+                             description={day.description}
             />
 
           })
         } 
 
-        {
-         <Movies moviesData={this.state.moviesData} />
+        { this.state.showMovie && this.state.moviesData.map( movie=> {
+          return  <Movies 
+                             title={movie.title}
+                             image_url={movie.image_url}
+                             overview= {movie.overview}
+                             popularity= {movie.popularity}
+                             released_on= {movie.released_on}
+                             average_votes= {movie.average_votes}
+                             total_votes= {movie.total_votes} />
+        })
+        
         }
 
       </>

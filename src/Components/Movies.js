@@ -24,18 +24,18 @@ class Movies extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                { this.props.moviesData.map(movie => {
+                                
                                 <tr>                                                        
-                                         <td><img src={movie.image_url}/></td>
-                                         <td>{movie.title}</td>
-                                         <td>{movie.overview}</td>
-                                         <td>{movie.popularity}</td>
-                                         <td>{movie.released_on}</td>
-                                         <td>{movie.average_votes}</td>
-                                         <td>{movie.total_votes}</td>
+                                         <td><img src={this.props.image_url} alt={'movie'}/></td>
+                                         <td>{this.props.title}</td>
+                                         <td>{this.props.overview}</td>
+                                         <td>{this.props.popularity}</td>
+                                         <td>{this.props.released_on}</td>
+                                         <td>{this.props.average_votes}</td>
+                                         <td>{this.props.total_votes}</td>
                                         
                                  </tr>
-    })}
+    
                             </tbody>
                         </Table>
                     </div>
